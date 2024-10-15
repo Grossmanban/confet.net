@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Nginx_Ubuntu :: Terminal</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="На данный момент самую большую популярность набрали два веб-сервера. Это Apache и Ngnix. У каждого из них есть свои плюсы и минусы. Apache был разработан еще в 1995 году и при его разработке учитывались не все возможные потребности пользователей, он потребляет много памяти и ресурсов системы, зато он прост в настройке. Nginx был разработан чуть позже в 2002 году уже учитывая ошибки Apache и ориентируясь на максимальную производительность.
+Мы не будем подробно вникать в плюсы и минусы этих обоих веб-серверов. У каждого из них своя область применения. В этой инструкции будет рассмотрена установка Nginx в Ubuntu. Хотя я буду говорить об Ubuntu, все действия подойдут и для других дистрибутивов. Настройка Nginx везде одинакова, только команда установки отличается.
+" />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="/posts/nginx_ubuntu/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="/css/code.min.9db603e0d861c0df7a77b184868b72f50462a1d64eda830d14b527b8c22d1fac.css">
+
+  
+  <link rel="stylesheet" href="/css/fonts.min.90c955c31dd7c0e05aae3d4f583d4d8a2af799d69c961337eaf2a825063a55dd.css">
+
+  
+  <link rel="stylesheet" href="/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="/css/main.min.1d8be2dd1b5de9fdaed058c8c59fcf4485f36619574abfb47ed0cfda4812c16d.css">
+
+  
+  <link rel="stylesheet" href="/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="/css/terminal.min.07d06f9a9d3c0e8aeceef1aa0e16487bb4dc3d1fc254e66cff25df004ed46ccb.css">
+
+  
+  <link rel="stylesheet" href="/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Nginx_Ubuntu">
+<meta property="og:description" content="На данный момент самую большую популярность набрали два веб-сервера. Это Apache и Ngnix. У каждого из них есть свои плюсы и минусы. Apache был разработан еще в 1995 году и при его разработке учитывались не все возможные потребности пользователей, он потребляет много памяти и ресурсов системы, зато он прост в настройке. Nginx был разработан чуть позже в 2002 году уже учитывая ошибки Apache и ориентируясь на максимальную производительность.
+Мы не будем подробно вникать в плюсы и минусы этих обоих веб-серверов. У каждого из них своя область применения. В этой инструкции будет рассмотрена установка Nginx в Ubuntu. Хотя я буду говорить об Ubuntu, все действия подойдут и для других дистрибутивов. Настройка Nginx везде одинакова, только команда установки отличается.
+" />
+<meta property="og:url" content="/posts/nginx_ubuntu/" />
+<meta property="og:site_name" content="Terminal" />
+
+  
+  
+  <meta property="og:image" content="/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-10-13 18:59:44 &#43;0300 MSK" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    ConFet.net
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/">ConFet.net</a></li>
+        
+      
+        
+          <li><a href="/about">О проекте</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/" >ConFet.net</a></li>
+        
+      
+        
+          <li><a href="/about" >О проекте</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/posts/nginx_ubuntu/">Nginx_Ubuntu</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-10-13</time></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="/tags/"></a>&nbsp;
+      
+      #<a href="/tags/"></a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>На данный момент самую большую популярность набрали два веб-сервера. Это Apache и Ngnix. У каждого из них есть свои плюсы и минусы. Apache был разработан еще в 1995 году и при его разработке учитывались не все возможные потребности пользователей, он потребляет много памяти и ресурсов системы, зато он прост в настройке. Nginx был разработан чуть позже в 2002 году уже учитывая ошибки Apache и ориентируясь на максимальную производительность.</p>
+<p>Мы не будем подробно вникать в плюсы и минусы этих обоих веб-серверов. У каждого из них своя область применения.  В этой инструкции будет рассмотрена установка Nginx в Ubuntu. Хотя я буду говорить об Ubuntu, все действия подойдут и для других дистрибутивов. Настройка Nginx везде одинакова, только команда установки отличается.</p>
+<p>Содержание статьи</p>
+<ul>
+<li>Установка компонентов</li>
+<li>Настройка Nginx Ubuntu</li>
+<li>Настройка сжатия Gzip</li>
+<li>Настройка виртуальных хостов</li>
+<li>Просмотр статистики</li>
+<li>Выводы</li>
+</ul>
+<h2 id="установка-компонентов">Установка компонентов<a href="#установка-компонентов" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Первым делом нужно установить сам веб-сервер в систему. Программа есть в официальных репозиториях, но ее версия уже немного устарела, поэтому если хотите самую новую версию, нужно добавить PPA:</p>
+<pre tabindex="0"><code> sudo apt-add-repository ppa:nginx/stable
+</code></pre><p>Сейчас в официальных репозиториях доступна версия 1.10.0, а в стабильной PPA уже доступна 1.10.1. Если для вас версия не нужна можно обойтись и без PPA. Дальше обновите списки пакетов из репозиториев:</p>
+<pre tabindex="0"><code> sudo apt update
+</code></pre><p>И устанавливаем ngnix:</p>
+<pre tabindex="0"><code> sudo apt install nginx
+</code></pre><p><a href="https://losst.pro/wp-content/uploads/2016/07/nginx.png"><img alt="nginx" src="https://losst.pro/wp-content/uploads/2016/07/nginx.png"></a></p>
+<p>После того как установка сервера Nginx будет завершена добавим программу в автозагрузку, чтобы она запускалась автоматически:</p>
+<pre tabindex="0"><code> sudo systemctl enable nginx
+</code></pre><p>Если вы уже сейчас откроете браузер, то увидите работающий nginx, но нам предстоит его еще настроить.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>По умолчанию загрузка отключена</p>
+</blockquote>
+<p><a href="https://losst.pro/wp-content/uploads/2016/07/nginx1.png"><img alt="nginx1" src="https://losst.pro/wp-content/uploads/2016/07/nginx1.png"></a></p>
+<h2 id="настройка-nginx-ubuntu">Настройка Nginx Ubuntu<a href="#настройка-nginx-ubuntu" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Настройка Nginx Ubuntu намного сложнее чем Apache. Здесь мы не будем рассматривать все опции и возможности программы, а поговорим только об основном. Есть различные конфигурации, в которых Nginx используется в качестве прокси сервера, а основной сервер Apache, но нас это интересовать не будет. Нам нужна установка Nginx как самостоятельного веб-сервера.</p>
+<p>Настройки Nginx сильно отличаются: здесь есть только один основной файл конфигурации и файлы для виртуальных хостов. Настройка из каждой директории, как в Apache не поддерживается.</p>
+<ul>
+<li><strong>/etc/nginx/nginx.conf</strong> - главный файл конфигурации</li>
+<li><strong>/etc/nginx/sites-available/*</strong> - файлы конфигурации для виртуальных хостов, проще говоря для каждого сайта.</li>
+<li><strong>/etc/nginx/sites-enabled/*</strong> - файлы конфигурации активированных сайтов.</li>
+</ul>
+<p>На самом деле файлы конфигурации для виртуальных хостов читаются только из директории sites-enabled, но здесь содержатся ссылки на файлы из каталога sites-available. Такая система была придумана, чтобы дать возможность отключать на время те или иные сайты, не стирая их конфигурацию. Все остальные файлы содержат только объявления переменных и стандартные настройки, которые изменять не нужно. Что же касается nginx.conf, то в него включаются все файлы из sites-enables, а поэтому они могут содержать все точно такие же инструкции. А теперь давайте рассмотрим главный файл конфигурации:</p>
+<pre tabindex="0"><code> sudo vi /etc/nginx/nginx.conf
+</code></pre><p><a href="https://losst.pro/wp-content/uploads/2016/07/nginx2.png"><img alt="nginx2" src="https://losst.pro/wp-content/uploads/2016/07/nginx2.png"></a></p>
+<p>Как видите файл разделен на секции. Общая структура такова:</p>
+<pre tabindex="0"><code>глобальные опцииevents {}http{server {location{}}server {}}mail {}
+</code></pre><ul>
+<li><strong>глобальные опции</strong> отвечают за работу всей программы.</li>
+<li><strong>events</strong> - эта секция содержит настройки для работы с сетью.</li>
+<li><strong>http</strong> - содержит настройки веб-сервера. Должна содержать секцию servier для тонкой настройки каждого сайта.</li>
+<li><strong>server</strong> - в этой секции содержится настройка каждого размещенного на веб-сервере сайта.</li>
+<li><strong>location</strong> - секция location может находиться только внутри секции server и содержит настройки только для определенного запроса.</li>
+<li><strong>mail</strong> - содержит настройки почтового прокси.</li>
+</ul>
+<p>Перед тем как перейти к опциям, нужно сказать еще пару слов о синтаксисе строки в конфигурационном файле. Он выглядит вот так:</p>
+<p><strong>параметр значение дополнительное_значение&hellip;;</strong></p>
+<p>Строка должна обязательно заканчиваться &ldquo;;&rdquo;, а все открытые скобки { должны быть закрыты.</p>
+<p>Теперь, когда вы немного изучили глобальную структуру, можно переходить к рассмотрению самих параметров. Глобальных опций не так уж много:</p>
+<ul>
+<li><strong>user</strong> - пользователь, от имени которого будет работать программа.</li>
+<li><strong>worker_processes</strong> - устанавливает сколько процессов нужно запускать для параллелизации работы программы, нужно запускать не больше процессов, чем у вас есть ядер. Можно установить параметр <strong>auto</strong> и тогда программа определит это число сама.</li>
+<li><strong>pid</strong> = файл pid программы.</li>
+<li><strong>worker_rlimit_nofile</strong> - указывает максимальное количество файлов, которые может открыть программа. Рассчитывается как worker_processes * worker_connections* 2.</li>
+</ul>
+<p>С глобальными опциями закончили, их было не так много и они не такие интереснее. Куда интереснее в плане оптимизации опции с секции events:</p>
+<ul>
+<li><strong>worker_connections</strong> - количество соединений, которые программа может обрабатывать одновременно на одном процессе. Если умножить worker_process на этот параметр, то мы получим максимальное количество пользователей, которые могут подключиться к серверу одновременно. Рекомендуется устанавливать значение от 1024 до 4048.</li>
+<li><strong>multi_accept</strong> - разрешить принимать много подключений одновременно, установите параметр on или off.</li>
+<li><strong>use</strong> - способ работы с сетевым стеком. По умолчанию используется poll, но для Linux эффективнее использовать epoll.</li>
+</ul>
+<p>Дальше переходим самой главной секции - http. Здесь опций намного больше:</p>
+<ul>
+<li><strong>sendfile</strong> - использовать метод отправки данных sendfile. Значение on.</li>
+<li><strong>tcp_nodelay, tcp_nopush</strong> - отправлять заголовки и начало файла одним пакетом. Значение on.</li>
+<li><strong>keepalive_timeout</strong> - таймаут ожидания, перед тем как keepalive соединение будет разорвано, по умолчанию 65, но можно уменьшить до 10 секунд.</li>
+<li><strong>keepalive_requests</strong> - максимальное количество keepalive соединений от одного клиента, рекомендовано 100.</li>
+<li><strong>reset_timedout_connection</strong> - разрывать соединения после таймаута. Значение on.</li>
+<li><strong>open_file_cache</strong> - кэшировать информацию об открытых файлах. Строчка настройки выглядит вот так: open_file_cache max=200000 inactive=20s; max - максимальное количество файлов в кэше, время кэширования.</li>
+<li><strong>open_file_cache_valid</strong> - указывает по истечении какого времени нужно удалить информацию из кэша. Например: open_file_cache_valid 30s;</li>
+<li><strong>open_file_cache_min_uses</strong> - кэшировать информацию о файлах, которые были открыты как минимум указанное количество раз.</li>
+<li><strong>open_file_cache_errors</strong> - кэшировать информацию об отсутствующих файлах, значение on.</li>
+</ul>
+<p>Основные параметры рассмотрели. Эти настройки помогут вам получить большую производительность от nginx. Секцию server и location мы рассмотрим в настройке виртуальных хостов.</p>
+<h2 id="настройка-сжатия-gzip">Настройка сжатия Gzip<a href="#настройка-сжатия-gzip" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Сжатие контента необходимо, чтобы уменьшить размер загружаемых браузером данных. Это ускоряет загрузку сайта, но добавляет дополнительную нагрузку на процессор сервера. Чтобы включить сжатие в секции http нужно добавить параметр:</p>
+<p><strong>gzip on</strong></p>
+<p>Эту директиву можно использовать также в секции server, тогда она будет работать только для указного виртуального домена. Дальше настраиваем параметры сжатия настраиваются с помощью следующих опций:</p>
+<ul>
+<li><strong>gzip_min_length</strong> - минимальная длина страницы в байтах, при которой нужно использовать сжатие, например, 1000 (1 кб)</li>
+<li><strong>gzip_proxied</strong> - нужно ли сжимать проксированые запросы, any говорит, что нужно сжимать все.</li>
+<li><strong>gzip_types</strong> - типы файлов, которые нужно сжимать, например: text/plain application/xml application/x-javascript text/javascript text/css text/json;</li>
+<li><strong>gzip_disable &ldquo;msie6&rdquo;</strong> - в IE 6 сжатие не поддерживается, поэтому отключаем.</li>
+<li><strong>gzip_comp_level</strong> - уровень сжатия, доступны варианты от 1 до 10. 1 - минимальное, 10 - максимальное сжатие.</li>
+</ul>
+<h2 id="настройка-виртуальных-хостов">Настройка виртуальных хостов<a href="#настройка-виртуальных-хостов" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Как вы знаете, на сервере может размещаться несколько сайтов. Все запросы приходят на ip сервера, а nginx уже определяет на основе домена какой контент нужно выдать. Для того чтобы nginx знал что к какому домену относится нужно настроить виртуальные хосты. Каждый хост принято размещать в отдельном файле. Настройка хоста находится в секции server, но поскольку все файлы из sites-enabled импортируются в секцию http, то логика структуры конфигурационного файла не нарушается.</p>
+<p>Рассмотрим пример настройки:</p>
+<pre tabindex="0"><code> vi /etc/nginx/sites-enabled/losst.pro.conf
+</code></pre><p><a href="https://losst.pro/wp-content/uploads/2016/07/nginx3.png"><img alt="nginx3" src="https://losst.pro/wp-content/uploads/2016/07/nginx3.png"></a></p>
+<ul>
+<li><strong>listen 80</strong> - указывает, что нужно ожидать подключения на порту 80, может также содержать опцию <strong>default-server</strong>, которая означает, что этот домен будет открывается если домен не был задан в запросе.</li>
+<li><strong>root /var/www/html</strong> - директория, в которой находятся файлы сайта.</li>
+<li><strong>index index.html</strong> - страница, которая будет открываться по умолчанию.</li>
+<li><strong>server_name</strong> - доменное имя сайта.</li>
+<li><strong>access_log</strong> - файл для записи лога запросов к серверу, может использоваться как глобально в секции http, так и для определенного типа файлов в location.</li>
+<li><strong>error_log</strong> - лог ошибок веб-сервера, может принимать дополнительный параметр, указывающий подробность лога. warn - максимум, crit - только критические ошибки.</li>
+</ul>
+<p>Это все основные настройки виртуального хоста, после них он уже будет работать. Но тут есть еще секция location, которая позволяет настроить поведение сервера для определенных директорий и файлов. Синтаксис location такой:</p>
+<p><strong>location адрес {}</strong></p>
+<p>В качестве адреса может использоваться как прямой запрос относительно корня сервера, так и регулярные выражения. Для использования регулярных выражений перед ним ставится символ &ldquo;~&rdquo;. Примеры рассмотрим ниже, а пока рассмотрим возможные директивы:</p>
+<ul>
+<li><strong>allow</strong> - разрешить доступ к местоположению для пользователей, all - всех, также можно указать ip или подсеть.</li>
+<li><strong>deny</strong> - запретить доступ к местоположению, all - для всех.</li>
+<li><strong>try-files</strong> - пытается открыть файлы в определенном порядке, открывает первый обнаруженный файл. Например, такая конструкция: $uri $uri/index.html $uri.html =404; сначала пытается открыть $uri, затем index.html, если не найден $uri.html, и аж потом, если ни одного из предложных файлов не существует, выдает ошибку 404.</li>
+<li><strong>expires</strong> - задает время кэширования браузером отданного элемента, например, 1d - один день, 2h - два часа, 30s - 30 секунд.</li>
+</ul>
+<p>Кроме этих главных директив, здесь могут использоваться и другие. Чтобы получить больше подробностей, смотрите официальную документацию. Рассмотрим пару примеров:</p>
+<p>Не выполнять логирование для favicon:</p>
+<pre tabindex="0"><code>location = /favicon.ico {log_not_found off;access_log off;}
+</code></pre><p>Запретить доступ к файлам, начинающимся с точки:</p>
+<pre tabindex="0"><code>location ~ /\. {deny all;}
+</code></pre><p>Кэшировать обычные файлы на 90 дней:</p>
+<pre tabindex="0"><code>location ~* ^.+\.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|rss|atom|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$ {access_log off; log_not_found off; expires 90d;}
+</code></pre><p>После того, как установка и настройка nginx будет завершена проверяем конфигурацию на ошибки:</p>
+<pre tabindex="0"><code> nginx -t
+</code></pre><p>Затем перезагружаем сервер:</p>
+<pre tabindex="0"><code> sudo service nginx reload
+ sudo service nginx restart
+</code></pre><p>Если изменялись незначительные параметры можно использовать reload, тогда будет просто обновлена конфигурация без перезагрузки, если же изменяли глобальные опции, нужно перезагрузить программу полностью с помощью restart.</p>
+<h2 id="просмотр-статистики">Просмотр статистики<a href="#просмотр-статистики" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Просмотр статистики работы веб-сервера очень важен. Установка nginx, должна содержать настройку возможности получения статистики. Для того чтобы это сделать добавьте такие строки к вашему хосту в секцию server:</p>
+<pre tabindex="0"><code>location /basic-staus {stats_stub;allow 127.0.0.1deny all;}
+</code></pre><p>Статистика будет доступна только с локального ip:</p>
+<pre tabindex="0"><code> wget localhost/basic-status -O -
+</code></pre><h2 id="выводы">Выводы<a href="#выводы" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Установка Nginx Ubuntu 16.04 завершена и теперь вы немного представляете как его настроить. Конечно, есть еще много вещей, которые мы не упомянули в статье, например, настройка обработки динамического контента php или настройка nginx Ubuntu в качестве прокси-сервера для apache. Возможно, это будет рассмотрено в следующих статях.</p>
+<p>×</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Другие посты</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="/posts/plasma62/" class="button inline next">
+        KDE Plasma 6.2. Поддержка графических планшетов, настройка яркости, управление питанием
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Made with Love</span>
+    
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

@@ -2,16 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/posts/</loc>
+    <loc>/news/</loc>
     <lastmod>2024-10-16T15:37:43+03:00</lastmod>
   </url><url>
     <loc>/</loc>
     <lastmod>2024-10-16T15:37:43+03:00</lastmod>
   </url><url>
-    <loc>/posts/openbsd76/</loc>
+    <loc>/news/openbsd76/</loc>
     <lastmod>2024-10-16T15:37:43+03:00</lastmod>
   </url><url>
     <loc>/posts/42_must_have_commands_linux/</loc>
+    <lastmod>2024-10-16T14:18:27+03:00</lastmod>
+  </url><url>
+    <loc>/posts/</loc>
     <lastmod>2024-10-16T14:18:27+03:00</lastmod>
   </url><url>
     <loc>/posts/installing_certificates_ubuntu/</loc>

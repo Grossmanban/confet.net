@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>News on Terminal</title>
+    <link>/news/</link>
+    <description>Recent content in News on Terminal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 16 Oct 2024 15:37:43 +0300</lastBuildDate><atom:link href="/news/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Выпуск OpenBSD 7.6</title>
+      <link>/news/openbsd76/</link>
+      <pubDate>Wed, 16 Oct 2024 15:37:43 +0300</pubDate>
+      
+      <guid>/news/openbsd76/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;1LifeIsButADream&#34; src=&#34;/news/openbsd76/1LifeIsButADream.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.mail-archive.com/announce@openbsd.org/msg00535.html&#34;&gt;Представлен&lt;/a&gt; выпуск свободной UNIX-подобной операционной системы &lt;a href=&#34;https://www.openbsd.org/76.html&#34;&gt;OpenBSD 7.6&lt;/a&gt;. Проект OpenBSD был основан Тэо де Раадтом (Theo de Raadt) в 1995 году после конфликта с разработчиками NetBSD, в результате которого для Тэо был закрыт доступ к CVS репозиторию NetBSD. После этого Тэо де Раадт с группой единомышленников создал на базе дерева исходных текстов NetBSD новую открытую операционную систему, главными целями развития которой стали переносимость (&lt;a href=&#34;https://www.openbsd.org/plat.html&#34;&gt;поддерживается&lt;/a&gt; 13 аппаратных платформ), стандартизация, корректная работа, проактивная безопасность и интегрированные криптографические средства. Размер полного установочного &lt;a href=&#34;http://ftp.eu.openbsd.org/pub/OpenBSD/7.6/&#34;&gt;ISO-образа&lt;/a&gt; базовой системы OpenBSD 7.6 составляет 702 МБ.&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;img alt=&#34;1LifeIsButADream&#34; src=&#34;/news/openbsd76/1LifeIsButADream.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.mail-archive.com/announce@openbsd.org/msg00535.html&#34;&gt;Представлен&lt;/a&gt; выпуск свободной UNIX-подобной операционной системы &lt;a href=&#34;https://www.openbsd.org/76.html&#34;&gt;OpenBSD 7.6&lt;/a&gt;. Проект OpenBSD был основан Тэо де Раадтом (Theo de Raadt) в 1995 году после конфликта с разработчиками NetBSD, в результате которого для Тэо был закрыт доступ к CVS репозиторию NetBSD. После этого Тэо де Раадт с группой единомышленников создал на базе дерева исходных текстов NetBSD новую открытую операционную систему, главными целями развития которой стали переносимость (&lt;a href=&#34;https://www.openbsd.org/plat.html&#34;&gt;поддерживается&lt;/a&gt; 13 аппаратных платформ), стандартизация, корректная работа, проактивная безопасность и интегрированные криптографические средства. Размер полного установочного &lt;a href=&#34;http://ftp.eu.openbsd.org/pub/OpenBSD/7.6/&#34;&gt;ISO-образа&lt;/a&gt; базовой системы OpenBSD 7.6 составляет 702 МБ.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

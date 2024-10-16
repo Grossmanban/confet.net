@@ -32,6 +32,15 @@
     <loc>/pages/</loc>
     <lastmod>2024-10-15T20:36:40+03:00</lastmod>
   </url><url>
+    <loc>/tags/ngnix/</loc>
+    <lastmod>2024-10-13T18:59:44+03:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2024-10-13T18:59:44+03:00</lastmod>
+  </url><url>
+    <loc>/tags/ubuntu/</loc>
+    <lastmod>2024-10-13T18:59:44+03:00</lastmod>
+  </url><url>
     <loc>/posts/nginx_ubuntu/</loc>
     <lastmod>2024-10-13T18:59:44+03:00</lastmod>
   </url><url>
@@ -39,7 +48,5 @@
     <lastmod>2024-10-13T17:50:26+03:00</lastmod>
   </url><url>
     <loc>/categories/</loc>
-  </url><url>
-    <loc>/tags/</loc>
   </url>
 </urlset>

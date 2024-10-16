@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu on Terminal</title>
+    <link>/tags/ubuntu/</link>
+    <description>Recent content in Ubuntu on Terminal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Oct 2024 18:59:44 +0300</lastBuildDate><atom:link href="/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Установка  Ngnix в Ubuntu</title>
+      <link>/posts/nginx_ubuntu/</link>
+      <pubDate>Sun, 13 Oct 2024 18:59:44 +0300</pubDate>
+      
+      <guid>/posts/nginx_ubuntu/</guid>
+      <description>&lt;p&gt;На данный момент самую большую популярность набрали два веб-сервера. Это Apache и Ngnix. У каждого из них есть свои плюсы и минусы. Apache был разработан еще в 1995 году и при его разработке учитывались не все возможные потребности пользователей, он потребляет много памяти и ресурсов системы, зато он прост в настройке. Nginx был разработан чуть позже в 2002 году уже учитывая ошибки Apache и ориентируясь на максимальную производительность.&lt;/p&gt;
+&lt;p&gt;Мы не будем подробно вникать в плюсы и минусы этих обоих веб-серверов. У каждого из них своя область применения.  В этой инструкции будет рассмотрена установка Nginx в Ubuntu. Хотя я буду говорить об Ubuntu, все действия подойдут и для других дистрибутивов. Настройка Nginx везде одинакова, только команда установки отличается.&lt;/p&gt;</description>
+      <content>&lt;p&gt;На данный момент самую большую популярность набрали два веб-сервера. Это Apache и Ngnix. У каждого из них есть свои плюсы и минусы. Apache был разработан еще в 1995 году и при его разработке учитывались не все возможные потребности пользователей, он потребляет много памяти и ресурсов системы, зато он прост в настройке. Nginx был разработан чуть позже в 2002 году уже учитывая ошибки Apache и ориентируясь на максимальную производительность.&lt;/p&gt;
+&lt;p&gt;Мы не будем подробно вникать в плюсы и минусы этих обоих веб-серверов. У каждого из них своя область применения.  В этой инструкции будет рассмотрена установка Nginx в Ubuntu. Хотя я буду говорить об Ubuntu, все действия подойдут и для других дистрибутивов. Настройка Nginx везде одинакова, только команда установки отличается.&lt;/p&gt;
+&lt;p&gt;Содержание статьи&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Установка компонентов&lt;/li&gt;
+&lt;li&gt;Настройка Nginx Ubuntu&lt;/li&gt;
+&lt;li&gt;Настройка сжатия Gzip&lt;/li&gt;
+&lt;li&gt;Настройка виртуальных хостов&lt;/li&gt;
+&lt;li&gt;Просмотр статистики&lt;/li&gt;
+&lt;li&gt;Выводы&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;установка-компонентов&#34;&gt;Установка компонентов&lt;/h2&gt;
+&lt;p&gt;Первым делом нужно установить сам веб-сервер в систему. Программа есть в официальных репозиториях, но ее версия уже немного устарела, поэтому если хотите самую новую версию, нужно добавить PPA:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; sudo apt-add-repository ppa:nginx/stable
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Сейчас в официальных репозиториях доступна версия 1.10.0, а в стабильной PPA уже доступна 1.10.1. Если для вас версия не нужна можно обойтись и без PPA. Дальше обновите списки пакетов из репозиториев:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; sudo apt update
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;И устанавливаем ngnix:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; sudo apt install nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://losst.pro/wp-content/uploads/2016/07/nginx.png&#34;&gt;&lt;img alt=&#34;nginx&#34; src=&#34;https://losst.pro/wp-content/uploads/2016/07/nginx.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;После того как установка сервера Nginx будет завершена добавим программу в автозагрузку, чтобы она запускалась автоматически:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; sudo systemctl enable nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Если вы уже сейчас откроете браузер, то увидите работающий nginx, но нам предстоит его еще настроить.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;p&gt;По умолчанию загрузка отключена&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://losst.pro/wp-content/uploads/2016/07/nginx1.png&#34;&gt;&lt;img alt=&#34;nginx1&#34; src=&#34;https://losst.pro/wp-content/uploads/2016/07/nginx1.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;настройка-nginx-ubuntu&#34;&gt;Настройка Nginx Ubuntu&lt;/h2&gt;
+&lt;p&gt;Настройка Nginx Ubuntu намного сложнее чем Apache. Здесь мы не будем рассматривать все опции и возможности программы, а поговорим только об основном. Есть различные конфигурации, в которых Nginx используется в качестве прокси сервера, а основной сервер Apache, но нас это интересовать не будет. Нам нужна установка Nginx как самостоятельного веб-сервера.&lt;/p&gt;
+&lt;p&gt;Настройки Nginx сильно отличаются: здесь есть только один основной файл конфигурации и файлы для виртуальных хостов. Настройка из каждой директории, как в Apache не поддерживается.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/etc/nginx/nginx.conf&lt;/strong&gt; - главный файл конфигурации&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/etc/nginx/sites-available/*&lt;/strong&gt; - файлы конфигурации для виртуальных хостов, проще говоря для каждого сайта.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/etc/nginx/sites-enabled/*&lt;/strong&gt; - файлы конфигурации активированных сайтов.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;На самом деле файлы конфигурации для виртуальных хостов читаются только из директории sites-enabled, но здесь содержатся ссылки на файлы из каталога sites-available. Такая система была придумана, чтобы дать возможность отключать на время те или иные сайты, не стирая их конфигурацию. Все остальные файлы содержат только объявления переменных и стандартные настройки, которые изменять не нужно. Что же касается nginx.conf, то в него включаются все файлы из sites-enables, а поэтому они могут содержать все точно такие же инструкции. А теперь давайте рассмотрим главный файл конфигурации:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; sudo vi /etc/nginx/nginx.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://losst.pro/wp-content/uploads/2016/07/nginx2.png&#34;&gt;&lt;img alt=&#34;nginx2&#34; src=&#34;https://losst.pro/wp-content/uploads/2016/07/nginx2.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Как видите файл разделен на секции. Общая структура такова:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;глобальные опцииevents {}http{server {location{}}server {}}mail {}
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;глобальные опции&lt;/strong&gt; отвечают за работу всей программы.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;events&lt;/strong&gt; - эта секция содержит настройки для работы с сетью.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;http&lt;/strong&gt; - содержит настройки веб-сервера. Должна содержать секцию servier для тонкой настройки каждого сайта.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;server&lt;/strong&gt; - в этой секции содержится настройка каждого размещенного на веб-сервере сайта.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;location&lt;/strong&gt; - секция location может находиться только внутри секции server и содержит настройки только для определенного запроса.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;mail&lt;/strong&gt; - содержит настройки почтового прокси.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Перед тем как перейти к опциям, нужно сказать еще пару слов о синтаксисе строки в конфигурационном файле. Он выглядит вот так:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;параметр значение дополнительное_значение&amp;hellip;;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Строка должна обязательно заканчиваться &amp;ldquo;;&amp;rdquo;, а все открытые скобки { должны быть закрыты.&lt;/p&gt;
+&lt;p&gt;Теперь, когда вы немного изучили глобальную структуру, можно переходить к рассмотрению самих параметров. Глобальных опций не так уж много:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;user&lt;/strong&gt; - пользователь, от имени которого будет работать программа.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;worker_processes&lt;/strong&gt; - устанавливает сколько процессов нужно запускать для параллелизации работы программы, нужно запускать не больше процессов, чем у вас есть ядер. Можно установить параметр &lt;strong&gt;auto&lt;/strong&gt; и тогда программа определит это число сама.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pid&lt;/strong&gt; = файл pid программы.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;worker_rlimit_nofile&lt;/strong&gt; - указывает максимальное количество файлов, которые может открыть программа. Рассчитывается как worker_processes * worker_connections* 2.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;С глобальными опциями закончили, их было не так много и они не такие интереснее. Куда интереснее в плане оптимизации опции с секции events:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;worker_connections&lt;/strong&gt; - количество соединений, которые программа может обрабатывать одновременно на одном процессе. Если умножить worker_process на этот параметр, то мы получим максимальное количество пользователей, которые могут подключиться к серверу одновременно. Рекомендуется устанавливать значение от 1024 до 4048.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;multi_accept&lt;/strong&gt; - разрешить принимать много подключений одновременно, установите параметр on или off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;use&lt;/strong&gt; - способ работы с сетевым стеком. По умолчанию используется poll, но для Linux эффективнее использовать epoll.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Дальше переходим самой главной секции - http. Здесь опций намного больше:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;sendfile&lt;/strong&gt; - использовать метод отправки данных sendfile. Значение on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;tcp_nodelay, tcp_nopush&lt;/strong&gt; - отправлять заголовки и начало файла одним пакетом. Значение on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;keepalive_timeout&lt;/strong&gt; - таймаут ожидания, перед тем как keepalive соединение будет разорвано, по умолчанию 65, но можно уменьшить до 10 секунд.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;keepalive_requests&lt;/strong&gt; - максимальное количество keepalive соединений от одного клиента, рекомендовано 100.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;reset_timedout_connection&lt;/strong&gt; - разрывать соединения после таймаута. Значение on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;open_file_cache&lt;/strong&gt; - кэшировать информацию об открытых файлах. Строчка настройки выглядит вот так: open_file_cache max=200000 inactive=20s; max - максимальное количество файлов в кэше, время кэширования.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;open_file_cache_valid&lt;/strong&gt; - указывает по истечении какого времени нужно удалить информацию из кэша. Например: open_file_cache_valid 30s;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;open_file_cache_min_uses&lt;/strong&gt; - кэшировать информацию о файлах, которые были открыты как минимум указанное количество раз.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;open_file_cache_errors&lt;/strong&gt; - кэшировать информацию об отсутствующих файлах, значение on.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Основные параметры рассмотрели. Эти настройки помогут вам получить большую производительность от nginx. Секцию server и location мы рассмотрим в настройке виртуальных хостов.&lt;/p&gt;
+&lt;h2 id=&#34;настройка-сжатия-gzip&#34;&gt;Настройка сжатия Gzip&lt;/h2&gt;
+&lt;p&gt;Сжатие контента необходимо, чтобы уменьшить размер загружаемых браузером данных. Это ускоряет загрузку сайта, но добавляет дополнительную нагрузку на процессор сервера. Чтобы включить сжатие в секции http нужно добавить параметр:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;gzip on&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Эту директиву можно использовать также в секции server, тогда она будет работать только для указного виртуального домена. Дальше настраиваем параметры сжатия настраиваются с помощью следующих опций:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;gzip_min_length&lt;/strong&gt; - минимальная длина страницы в байтах, при которой нужно использовать сжатие, например, 1000 (1 кб)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;gzip_proxied&lt;/strong&gt; - нужно ли сжимать проксированые запросы, any говорит, что нужно сжимать все.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;gzip_types&lt;/strong&gt; - типы файлов, которые нужно сжимать, например: text/plain application/xml application/x-javascript text/javascript text/css text/json;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;gzip_disable &amp;ldquo;msie6&amp;rdquo;&lt;/strong&gt; - в IE 6 сжатие не поддерживается, поэтому отключаем.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;gzip_comp_level&lt;/strong&gt; - уровень сжатия, доступны варианты от 1 до 10. 1 - минимальное, 10 - максимальное сжатие.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;настройка-виртуальных-хостов&#34;&gt;Настройка виртуальных хостов&lt;/h2&gt;
+&lt;p&gt;Как вы знаете, на сервере может размещаться несколько сайтов. Все запросы приходят на ip сервера, а nginx уже определяет на основе домена какой контент нужно выдать. Для того чтобы nginx знал что к какому домену относится нужно настроить виртуальные хосты. Каждый хост принято размещать в отдельном файле. Настройка хоста находится в секции server, но поскольку все файлы из sites-enabled импортируются в секцию http, то логика структуры конфигурационного файла не нарушается.&lt;/p&gt;
+&lt;p&gt;Рассмотрим пример настройки:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; vi /etc/nginx/sites-enabled/losst.pro.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&#34;https://losst.pro/wp-content/uploads/2016/07/nginx3.png&#34;&gt;&lt;img alt=&#34;nginx3&#34; src=&#34;https://losst.pro/wp-content/uploads/2016/07/nginx3.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;listen 80&lt;/strong&gt; - указывает, что нужно ожидать подключения на порту 80, может также содержать опцию &lt;strong&gt;default-server&lt;/strong&gt;, которая означает, что этот домен будет открывается если домен не был задан в запросе.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;root /var/www/html&lt;/strong&gt; - директория, в которой находятся файлы сайта.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;index index.html&lt;/strong&gt; - страница, которая будет открываться по умолчанию.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;server_name&lt;/strong&gt; - доменное имя сайта.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;access_log&lt;/strong&gt; - файл для записи лога запросов к серверу, может использоваться как глобально в секции http, так и для определенного типа файлов в location.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;error_log&lt;/strong&gt; - лог ошибок веб-сервера, может принимать дополнительный параметр, указывающий подробность лога. warn - максимум, crit - только критические ошибки.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Это все основные настройки виртуального хоста, после них он уже будет работать. Но тут есть еще секция location, которая позволяет настроить поведение сервера для определенных директорий и файлов. Синтаксис location такой:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;location адрес {}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;В качестве адреса может использоваться как прямой запрос относительно корня сервера, так и регулярные выражения. Для использования регулярных выражений перед ним ставится символ &amp;ldquo;~&amp;rdquo;. Примеры рассмотрим ниже, а пока рассмотрим возможные директивы:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;allow&lt;/strong&gt; - разрешить доступ к местоположению для пользователей, all - всех, также можно указать ip или подсеть.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;deny&lt;/strong&gt; - запретить доступ к местоположению, all - для всех.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;try-files&lt;/strong&gt; - пытается открыть файлы в определенном порядке, открывает первый обнаруженный файл. Например, такая конструкция: $uri $uri/index.html $uri.html =404; сначала пытается открыть $uri, затем index.html, если не найден $uri.html, и аж потом, если ни одного из предложных файлов не существует, выдает ошибку 404.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;expires&lt;/strong&gt; - задает время кэширования браузером отданного элемента, например, 1d - один день, 2h - два часа, 30s - 30 секунд.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Кроме этих главных директив, здесь могут использоваться и другие. Чтобы получить больше подробностей, смотрите официальную документацию. Рассмотрим пару примеров:&lt;/p&gt;
+&lt;p&gt;Не выполнять логирование для favicon:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;location = /favicon.ico {log_not_found off;access_log off;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Запретить доступ к файлам, начинающимся с точки:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;location ~ /\. {deny all;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Кэшировать обычные файлы на 90 дней:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;location ~* ^.+\.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|rss|atom|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$ {access_log off; log_not_found off; expires 90d;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;После того, как установка и настройка nginx будет завершена проверяем конфигурацию на ошибки:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; nginx -t
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Затем перезагружаем сервер:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; sudo service nginx reload
+ sudo service nginx restart
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Если изменялись незначительные параметры можно использовать reload, тогда будет просто обновлена конфигурация без перезагрузки, если же изменяли глобальные опции, нужно перезагрузить программу полностью с помощью restart.&lt;/p&gt;
+&lt;h2 id=&#34;просмотр-статистики&#34;&gt;Просмотр статистики&lt;/h2&gt;
+&lt;p&gt;Просмотр статистики работы веб-сервера очень важен. Установка nginx, должна содержать настройку возможности получения статистики. Для того чтобы это сделать добавьте такие строки к вашему хосту в секцию server:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;location /basic-staus {stats_stub;allow 127.0.0.1deny all;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Статистика будет доступна только с локального ip:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; wget localhost/basic-status -O -
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;выводы&#34;&gt;Выводы&lt;/h2&gt;
+&lt;p&gt;Установка Nginx Ubuntu 16.04 завершена и теперь вы немного представляете как его настроить. Конечно, есть еще много вещей, которые мы не упомянули в статье, например, настройка обработки динамического контента php или настройка nginx Ubuntu в качестве прокси-сервера для apache. Возможно, это будет рассмотрено в следующих статях.&lt;/p&gt;
+&lt;p&gt;×&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

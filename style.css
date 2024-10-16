@@ -1,0 +1,10 @@
+.post-cover {
+    display: block; /* чтобы изображение было блочным элементом */
+    max-width: 60%; /* или любое значение, чтобы уменьшить размер */
+    margin: 0 auto; /* центрирование изображения */
+    border: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 8px;
+    overflow: hidden;
+    max-height: 300px; /* Ограничение высоты (при необходимости) */
+}

@@ -114,7 +114,7 @@
 <body>
 
 
-<div class="container">
+<div class="container center">
 
   <header class="header">
   <div class="header__inner">
@@ -133,15 +133,15 @@
     <ul class="menu__dropdown">
       
         
-          <li><a href="/">Новости</a></li>
+          <li><a href="/">Статьи</a></li>
+        
+      
+        
+          <li><a href="/news">Новости</a></li>
         
       
         
           <li><a href="/about">О нас</a></li>
-        
-      
-        
-          <li><a href="/articles">Статьи</a></li>
         
       
       
@@ -158,28 +158,17 @@
     
       
         
-          <li><a href="/" >Новости</a></li>
+          <li><a href="/" >Статьи</a></li>
+        
+      
+        
+          <li><a href="/news" >Новости</a></li>
         
       
         
           <li><a href="/about" >О нас</a></li>
         
       
-      
-        <li>
-          <ul class="menu">
-            <li class="menu__trigger">Показать больше&nbsp;▾</li>
-            <li>
-              <ul class="menu__dropdown">
-                
-                  
-                    <li><a href="/articles" >Статьи</a></li>
-                  
-                
-              </ul>
-            </li>
-          </ul>
-        </li>
       
     
   </ul>
@@ -210,24 +199,31 @@
 
 
   
+    <div class="table-of-contents">
+      <h2>
+        Содержание статьи
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#поиск-файлов-по-содержимому-в-linux">Поиск файлов по содержимому в Linux</a>
+      <ul>
+        <li><a href="#1-grep">1. Grep</a></li>
+        <li><a href="#2-ripgrep">2. Ripgrep</a></li>
+        <li><a href="#3-ack">3. Ack</a></li>
+        <li><a href="#4-silver-searcher">4. Silver Searcher</a></li>
+        <li><a href="#5-skim">5. Skim</a></li>
+      </ul>
+    </li>
+    <li><a href="#производительность-grep-rg-ack-и-ag">Производительность grep, rg, ack и ag</a></li>
+    <li><a href="#выводы">Выводы</a></li>
+  </ul>
+</nav>
+    </div>
+  
 
   <div class="post-content"><div>
         <p>Иногда может понадобится найти файл, в котором содержится определённая строка или найти строку в файле, где есть нужное слово. Это может понадобится для поиска логов, поиска конфигурационных файлов, если вы не знаете где они находятся или для поиска файлов с программным кодом.</p>
 <p>Раньше для этих целей использовалась только утилита grep, однако сейчас существует огромное количество других программ, которые могут делать это быстрее и предоставляют более удобный интерфейс. В этой статье мы рассмотрим самые интересные из них и несколько примеров как ими пользоваться.</p>
-<p>Содержание статьи</p>
-<ul>
-<li>Поиск файлов по содержимому в Linux
-<ul>
-<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-1-grep">1. Grep</a></li>
-<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-2-ripgrep">2. Ripgrep</a></li>
-<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-3-ack">3. Ack</a></li>
-<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-4-silver-searcher">4. Silver Searcher</a></li>
-<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-5-skim">5. Skim</a></li>
-</ul>
-</li>
-<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#proizvoditelnost-grep-rg-ack-i-ag">Производительность grep, rg, ack и ag</a></li>
-<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#vyvody">Выводы</a></li>
-</ul>
 <h2 id="поиск-файлов-по-содержимому-в-linux">Поиск файлов по содержимому в Linux<a href="#поиск-файлов-по-содержимому-в-linux" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>Все утилиты в этой статье работают только в терминале. Если вас интересуют приложения с графическим интерфейсом, посмотрите статью поиск файлов в Linux. Большинство описанных ниже команд имеют примерно одинаковый синтаксис:</p>
 <p><strong>$ команда опции паттерн /путь/к/папке</strong></p>

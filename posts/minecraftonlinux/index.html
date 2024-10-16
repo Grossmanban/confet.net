@@ -114,7 +114,7 @@
 <body>
 
 
-<div class="container">
+<div class="container center">
 
   <header class="header">
   <div class="header__inner">
@@ -133,15 +133,15 @@
     <ul class="menu__dropdown">
       
         
-          <li><a href="/">Новости</a></li>
+          <li><a href="/">Статьи</a></li>
+        
+      
+        
+          <li><a href="/news">Новости</a></li>
         
       
         
           <li><a href="/about">О нас</a></li>
-        
-      
-        
-          <li><a href="/articles">Статьи</a></li>
         
       
       
@@ -158,28 +158,17 @@
     
       
         
-          <li><a href="/" >Новости</a></li>
+          <li><a href="/" >Статьи</a></li>
+        
+      
+        
+          <li><a href="/news" >Новости</a></li>
         
       
         
           <li><a href="/about" >О нас</a></li>
         
       
-      
-        <li>
-          <ul class="menu">
-            <li class="menu__trigger">Показать больше&nbsp;▾</li>
-            <li>
-              <ul class="menu__dropdown">
-                
-                  
-                    <li><a href="/articles" >Статьи</a></li>
-                  
-                
-              </ul>
-            </li>
-          </ul>
-        </li>
       
     
   </ul>
@@ -209,6 +198,34 @@
   
 
 
+  
+    <div class="table-of-contents">
+      <h2>
+        Содержание статьи
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#установка-minecraft-на-linux">Установка Minecraft на Linux</a></li>
+    <li><a href="#установка-minecraft-в-linux-официальная-версия">Установка Minecraft в Linux (официальная версия)</a>
+      <ul>
+        <li><a href="#1-регистрация-аккаунта-mojang">1. Регистрация аккаунта Mojang</a></li>
+        <li><a href="#2-установка-java-и-проприетарных-драйверов">2. Установка Java и проприетарных драйверов</a></li>
+        <li><a href="#3-установка-официального-minecraft-лаунчера">3. Установка официального Minecraft-лаунчера</a></li>
+      </ul>
+    </li>
+    <li><a href="#сторонние-лаунчеры-minecraft-в-linux">Сторонние лаунчеры Minecraft в Linux</a>
+      <ul>
+        <li><a href="#запуск-лаунчера-minecraft-в-linux">Запуск лаунчера Minecraft в Linux</a></li>
+        <li><a href="#1-mrlauncher">1. MRLauncher</a></li>
+        <li><a href="#2-mlauncher">2. MLauncher</a></li>
+        <li><a href="#3-tlauncher">3. TLauncher</a></li>
+      </ul>
+    </li>
+    <li><a href="#скриншоты-из-игры">Скриншоты из игры</a></li>
+    <li><a href="#выводы">Выводы</a></li>
+  </ul>
+</nav>
+    </div>
   
 
   <div class="post-content"><div>
@@ -261,34 +278,24 @@
 </ul>
 <h2 id="установка-minecraft-в-linux-официальная-версия">Установка Minecraft в Linux (официальная версия)<a href="#установка-minecraft-в-linux-официальная-версия" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <h3 id="1-регистрация-аккаунта-mojang">1. Регистрация аккаунта Mojang<a href="#1-регистрация-аккаунта-mojang" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Если вы хотели бы приобрести лицензию Minecraft, перейдите на <a href="https://minecraft.net/en-us/">официальный сайт</a> и нажмите <strong>BUY MINECRAFT</strong>:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Minecraft1.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Minecraft1.png"></a></p>
-<p>Далее вам необходимо ввести вашу почту (Gmail, MailRu или любую другую - не важно), пароль и дату рождения. Обратите внимание, вы должны согласиться со сбором данных, нажав <strong>I agree to collection of usage data</strong>. Чтобы создать аккаунт, нажмите <strong>CREATE ACCOUNT</strong>:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Minecraft2.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Minecraft2.png"></a></p>
-<p>Чтобы подтвердить аккаунт, вам на почту, указанную при регестрации, будет выслан код подтверждения. Введите его в поле <strong>Verification code</strong> и нажмите <strong>VERIFY</strong>:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Minecraft3.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Minecraft3.png"></a></p>
+<p>Если вы хотели бы приобрести лицензию Minecraft, перейдите на официальный сайт и нажмите BUY MINECRAFT:</p>
+<p>Далее вам необходимо ввести вашу почту (Gmail, MailRu или любую другую - не важно), пароль и дату рождения. Обратите внимание, вы должны согласиться со сбором данных, нажав I agree to collection of usage data. Чтобы создать аккаунт, нажмите CREATE ACCOUNT:</p>
+<p>Чтобы подтвердить аккаунт, вам на почту, указанную при регестрации, будет выслан код подтверждения. Введите его в поле Verification code и нажмите VERIFY:</p>
 <p>Далее вам нужно будет ввести данные, необходимые для покупки, и после оплаты скачать игру:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Minecraft4.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Minecraft4.png"></a></p>
 <h3 id="2-установка-java-и-проприетарных-драйверов">2. Установка Java и проприетарных драйверов<a href="#2-установка-java-и-проприетарных-драйверов" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Для запуска игры вам понадобится установить в свою систему Java-машину. Рекомендуется использовать восьмую версию. Подробнее об установке Java читайте в статье <a href="https://losst.pro/ustanovka-java-jre-jdk-v-ubuntu-16-04">установка Java в Linux</a>. Также для лучшей производительности рекомендуется использовать проприетарные драйвры для видеокарты.</p>
+<p>Для запуска игры вам понадобится установить в свою систему Java-машину. Рекомендуется использовать восьмую версию. Подробнее об установке Java читайте в статье установка Java в Linux. Также для лучшей производительности рекомендуется использовать проприетарные драйвры для видеокарты.</p>
 <h3 id="3-установка-официального-minecraft-лаунчера">3. Установка официального Minecraft-лаунчера<a href="#3-установка-официального-minecraft-лаунчера" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Скачать лаунчер можно и без оплаты. Но для игры вам всё равно надо будет пройти регистрацию. Если вы незаплатите, вам будет доступна только демо-версия игры (5 игровых дней, что ~= 100 реальным минутам). Чтобы скачать лаунчер, просто нажмите <strong>Download</strong> и сохраните в удобную для вас папку:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Minecraft-Download-5.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Minecraft-Download-5.png"></a></p>
+<p>Скачать лаунчер можно и без оплаты. Но для игры вам всё равно надо будет пройти регистрацию. Если вы незаплатите, вам будет доступна только демо-версия игры (5 игровых дней, что ~= 100 реальным минутам). Чтобы скачать лаунчер, просто нажмите Download и сохраните в удобную для вас папку:</p>
 <p>После запуска скачанного файла, подождите несколько секунд, пока игра загрузится и распакуется:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Install-6.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Install-6.png"></a></p>
-<p>Теперь вам необходимо ввести логин и пароль, указанные при регистрации, и нажать <strong>Log In</strong>:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Log-In-7.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Log-In-7.png"></a></p>
-<p>Если вы оплатили лицензию, то у вас будет кнопка <strong>Play</strong>, если же вы этого не сделали, то будет <strong>Play Demo</strong>. Нажмите на эту кнопку:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Minaecraft-Launcher-8.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Minaecraft-Launcher-8.png"></a></p>
-<p>Повторюсь, если вы купили лицензию, то вас забросит в главное меню со всеми пунктами, если же вы в демо-режиме, то у вас будет только возможность создать и пересоздать новый мир. При том только один. И если вы создадите мир в демо, то увидите надпись, рассказывающую об основах управления, и пометку об ограничении времени. Так же таймер появится в правом верхнем углу. Если вы не хотите оплачивать, нажмите <strong>Continue Playing</strong>:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Demo-9.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Demo-9.png"></a></p>
+<p>Теперь вам необходимо ввести логин и пароль, указанные при регистрации, и нажать Log In:</p>
+<p>Если вы оплатили лицензию, то у вас будет кнопка Play, если же вы этого не сделали, то будет Play Demo. Нажмите на эту кнопку:</p>
+<p>Повторюсь, если вы купили лицензию, то вас забросит в главное меню со всеми пунктами, если же вы в демо-режиме, то у вас будет только возможность создать и пересоздать новый мир. При том только один. И если вы создадите мир в демо, то увидите надпись, рассказывающую об основах управления, и пометку об ограничении времени. Так же таймер появится в правом верхнем углу. Если вы не хотите оплачивать, нажмите Continue Playing:</p>
 <p>Так же есть возможность установить Minecraft на Linux через snap-пакет. Для этого выполните следующую команду в эмуляторе терминала:</p>
 <pre tabindex="0"><code>sudo snap install minecraft 
 </code></pre><h2 id="сторонние-лаунчеры-minecraft-в-linux">Сторонние лаунчеры Minecraft в Linux<a href="#сторонние-лаунчеры-minecraft-в-linux" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>Основным отличием является то, что в официальном лаунчере вы можете играть только через аккаунт Mojang, а в сторонних игра доступна либо вообще без аккаунта (только с ником), либо с аккаунтом одной из систем (например Ely.by) или же самой Mojang. Используя сторонний аккаунт (не путать с лаунчером - сторонним считается любой акк, зарегестрированный не в Mojang), вы не сможете играть на лицензионных серверах.</p>
 <h3 id="запуск-лаунчера-minecraft-в-linux">Запуск лаунчера Minecraft в Linux<a href="#запуск-лаунчера-minecraft-в-linux" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Установка Minecraft Linux состоит лишь в том, чтобы скачать лаунчер и запустить его. Любой скачанный вами лаунчер представляет собой обычный <strong>&quot;*.jar&quot;</strong> файл. Просто кликните по нему 2 раза. Если появится ошибка при запуске, или же он откроется как обычный архив, скорее всего, у вас нет проприетарной Java от Oracle. Ссылка на статью про установку Java есть выше. Если вы всё сделали правильно, то нажмите по файлу правой кнопкой мыши и в параметрах укажите запуск через Java той версии, которая вам нужна (рекомендую Java 8).</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/java.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/java.png"></a></p>
+<p>Установка Minecraft Linux состоит лишь в том, чтобы скачать лаунчер и запустить его. Любой скачанный вами лаунчер представляет собой обычный &ldquo;*.jar&rdquo; файл. Просто кликните по нему 2 раза. Если появится ошибка при запуске, или же он откроется как обычный архив, скорее всего, у вас нет проприетарной Java от Oracle. Ссылка на статью про установку Java есть выше. Если вы всё сделали правильно, то нажмите по файлу правой кнопкой мыши и в параметрах укажите запуск через Java той версии, которая вам нужна (рекомендую Java 8).</p>
 <p>Или же вы можете использовать такую команду для запуска лаунчера через терминал:</p>
 <pre tabindex="0"><code>java -jar /путь/к/файлу/лаунчера.jar
 </code></pre><p>Давайте далее рассмотрим основные лаунчеры.</p>
@@ -297,10 +304,9 @@
 <p>Из плюсов:</p>
 <ul>
 <li>Возможность входа с лицензионного аккаунта Mojang, поддержка игры через Ely.by, так же можно использовать обычный аккаунт без пароля;</li>
-<li>Возможность заходить на сервер в один клик, нажав кнопку &ldquo;<strong>Играть</strong>.</li>
+<li>Возможность заходить на сервер в один клик, нажав кнопку &ldquo;Играть.</li>
 </ul>
 <p>Из минусов хотелось бы отметить, что у MRLauncher довольно громоздкий и не очень удобный интерфейс, но это на мой взгляд.</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/MrLauncher.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/MrLauncher.png"></a></p>
 <h3 id="2-mlauncher">2. MLauncher<a href="#2-mlauncher" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <p>Свободный лаунчер Minecraft, имеющий довольно высокую популярность среди игроков.</p>
 <p>Из плюсов:</p>
@@ -312,8 +318,6 @@
 <li>Довольно красивый и приятный интерфейс (субъективно).</li>
 </ul>
 <p>Из минусов - нет поддержки Ely.by.</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/MLauncher1.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/MLauncher1.png"></a></p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/MLauncher2.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/MLauncher2.png"></a></p>
 <h3 id="3-tlauncher">3. TLauncher<a href="#3-tlauncher" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <p>Сам пользуюсь данным лаунчером, но скорее по првычке.</p>
 <p>Из плюсов:</p>
@@ -329,12 +333,8 @@
 <li>Хоть вы и можете играть на пиратском аккаунте, но вас словно вынуждают завести учётную запись TLauncher;</li>
 <li>Слииишком часто вам намекают о том, что стоило бы купить премиум подписку, к слову, не очень дешёвую.</li>
 </ul>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Tlauncher1.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Tlauncher1.png"></a></p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Tlauncher2.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Tlauncher2.png"></a></p>
 <h2 id="скриншоты-из-игры">Скриншоты из игры<a href="#скриншоты-из-игры" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>Ниже будет приведена пара скриншотов из самой игры. Запускалась она на Xubuntu:</p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Screenshot_2018-05-20_22-14-58.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Screenshot_2018-05-20_22-14-58.png"></a></p>
-<p><a href="https://losst.pro/wp-content/uploads/2018/05/Screenshot_2018-05-20_22-17-54.png"><img alt="img" src="https://losst.pro/wp-content/uploads/2018/05/Screenshot_2018-05-20_22-17-54.png"></a></p>
 <h2 id="выводы">Выводы<a href="#выводы" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>В данной статье мы рассмотрели, как выполняется установка Minecraft на Linux, а так же сравнили различные лаунчеры для игры Minecraft. Если остались какие-либо вопросы, спрашивайте в комментариях!</p>
 

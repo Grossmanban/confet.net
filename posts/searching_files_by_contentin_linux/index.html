@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Поиск файлов по содержимому в Linux :: Terminal</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Иногда может понадобится найти файл, в котором содержится определённая строка или найти строку в файле, где есть нужное слово. Это может понадобится для поиска логов, поиска конфигурационных файлов, если вы не знаете где они находятся или для поиска файлов с программным кодом.
+Раньше для этих целей использовалась только утилита grep, однако сейчас существует огромное количество других программ, которые могут делать это быстрее и предоставляют более удобный интерфейс. В этой статье мы рассмотрим самые интересные из них и несколько примеров как ими пользоваться.
+" />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="/posts/searching_files_by_contentin_linux/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="/css/code.min.9db603e0d861c0df7a77b184868b72f50462a1d64eda830d14b527b8c22d1fac.css">
+
+  
+  <link rel="stylesheet" href="/css/fonts.min.90c955c31dd7c0e05aae3d4f583d4d8a2af799d69c961337eaf2a825063a55dd.css">
+
+  
+  <link rel="stylesheet" href="/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="/css/main.min.1d8be2dd1b5de9fdaed058c8c59fcf4485f36619574abfb47ed0cfda4812c16d.css">
+
+  
+  <link rel="stylesheet" href="/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="/css/terminal.min.07d06f9a9d3c0e8aeceef1aa0e16487bb4dc3d1fc254e66cff25df004ed46ccb.css">
+
+  
+  <link rel="stylesheet" href="/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Поиск файлов по содержимому в Linux">
+<meta property="og:description" content="Иногда может понадобится найти файл, в котором содержится определённая строка или найти строку в файле, где есть нужное слово. Это может понадобится для поиска логов, поиска конфигурационных файлов, если вы не знаете где они находятся или для поиска файлов с программным кодом.
+Раньше для этих целей использовалась только утилита grep, однако сейчас существует огромное количество других программ, которые могут делать это быстрее и предоставляют более удобный интерфейс. В этой статье мы рассмотрим самые интересные из них и несколько примеров как ими пользоваться.
+" />
+<meta property="og:url" content="/posts/searching_files_by_contentin_linux/" />
+<meta property="og:site_name" content="Terminal" />
+
+  
+  
+  <meta property="og:image" content="/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-10-16 13:56:22 &#43;0300 MSK" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    ConFet.net
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/">Новости</a></li>
+        
+      
+        
+          <li><a href="/about">О нас</a></li>
+        
+      
+        
+          <li><a href="/articles">Статьи</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/" >Новости</a></li>
+        
+      
+        
+          <li><a href="/about" >О нас</a></li>
+        
+      
+      
+        <li>
+          <ul class="menu">
+            <li class="menu__trigger">Показать больше&nbsp;▾</li>
+            <li>
+              <ul class="menu__dropdown">
+                
+                  
+                    <li><a href="/articles" >Статьи</a></li>
+                  
+                
+              </ul>
+            </li>
+          </ul>
+        </li>
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/posts/searching_files_by_contentin_linux/">Поиск файлов по содержимому в Linux</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-10-16</time></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="/tags/"></a>&nbsp;
+      
+      #<a href="/tags/"></a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Иногда может понадобится найти файл, в котором содержится определённая строка или найти строку в файле, где есть нужное слово. Это может понадобится для поиска логов, поиска конфигурационных файлов, если вы не знаете где они находятся или для поиска файлов с программным кодом.</p>
+<p>Раньше для этих целей использовалась только утилита grep, однако сейчас существует огромное количество других программ, которые могут делать это быстрее и предоставляют более удобный интерфейс. В этой статье мы рассмотрим самые интересные из них и несколько примеров как ими пользоваться.</p>
+<p>Содержание статьи</p>
+<ul>
+<li>Поиск файлов по содержимому в Linux
+<ul>
+<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-1-grep">1. Grep</a></li>
+<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-2-ripgrep">2. Ripgrep</a></li>
+<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-3-ack">3. Ack</a></li>
+<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-4-silver-searcher">4. Silver Searcher</a></li>
+<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#toc-5-skim">5. Skim</a></li>
+</ul>
+</li>
+<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#proizvoditelnost-grep-rg-ack-i-ag">Производительность grep, rg, ack и ag</a></li>
+<li><a href="https://losst.pro/poisk-fajlov-po-soderzhimomu-v-linux#vyvody">Выводы</a></li>
+</ul>
+<h2 id="поиск-файлов-по-содержимому-в-linux">Поиск файлов по содержимому в Linux<a href="#поиск-файлов-по-содержимому-в-linux" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Все утилиты в этой статье работают только в терминале. Если вас интересуют приложения с графическим интерфейсом, посмотрите статью поиск файлов в Linux. Большинство описанных ниже команд имеют примерно одинаковый синтаксис:</p>
+<p><strong>$ команда опции паттерн /путь/к/папке</strong></p>
+<p>Паттерн для поиска может быть обычным словом, но большинство команд ожидают, что это будет регулярное выражение, поэтому если в вашем запросе есть спец. символы, вы можете получить в результате не то, что ожидаете. Путь к папке, как правило, указывать не обязательно, тогда команды используют текущую папку для поиска. А теперь давайте рассмотрим каждую команду подробнее.</p>
+<h3 id="1-grep">1. Grep<a href="#1-grep" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Прежде чем перейти к современным утилитам, давайте рассмотрим команду grep. Она входит в набор программ GNU и используется для поиска строк в файлах и файлов по их содержимому уже очень давно.</p>
+<p>По умолчанию grep фильтрует один файл или стандартный ввод. Для того чтобы выполнять поиск в папке по нескольким файлам, нужно включить рекурсивный поиск с помощью опции <strong>-r</strong>. Например, найдем все файлы в папке <strong>/etc/</strong>, которые содержат строку <strong>root</strong>:</p>
+<pre tabindex="0"><code>sudo grep -r &#34;root&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-894x576.png"></p>
+<p>Команда grep не подсвечивает вхождения символов которое вы искали цветом, для этого можно использовать опцию <strong>&ndash;color=always</strong>. Но в большинстве дистрибутивов эта опция уже прописана в алиасе для этой команды, поэтому вывод будет выглядеть вот так:</p>
+<pre tabindex="0"><code>sudo grep --color=always -r &#34;root&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-1-894x576.png"></p>
+<p>С помощью опции <strong>-С</strong> или <strong>&ndash;context</strong> вы можете включить отображение не только текущей строки, в которой было найдено вхождение но и нескольких строк до и после. В этом параметре надо указать количество строк для отображения:</p>
+<pre tabindex="0"><code>sudo grep -r -С2 &#34;root&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-2-894x576.png"></p>
+<p>По умолчанию grep ожидает, что поисковый запрос может быть регулярным выражением, но поддерживается только базовый синтаксис. Для включения расширенного синтаксиса нужно использовать опцию <strong>-E</strong>. Например, для того чтобы найти все файлы содержащие переменные, начинающиеся на букву <strong>A</strong> в папке <strong>/etc/</strong> выполните:</p>
+<pre tabindex="0"><code>sudo grep -r -E &#34;^A[A-Z_]+\=&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-3-894x576.png"></p>
+<p>А для того чтобы искать именно фиксированную строку, а не регулярное выражение используйте опцию <strong>-F</strong> или команду <strong>fgrep</strong>. Например, так можно найти все файлы содержащие секцию [Install] в папке <strong>/usr/</strong>:</p>
+<pre tabindex="0"><code>sudo grep -r -F &#34;[Install]&#34; /usr/ 
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-4-894x576.png"></p>
+<h3 id="2-ripgrep">2. Ripgrep<a href="#2-ripgrep" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Это популярная альтернатива grep написанная на Rust. Она может делать всё то же самое что и grep, но быстрее, а ещё её гораздо удобнее использовать. Рекурсивный поиск включён по умолчанию, и подсветка вхождений и имени файла разными цветами тоже работает без дополнительных опций, а также она пропускает скрытые файлы, бинарные файлы и файлы, перечисленные в <strong>.gitignore</strong>. Для установки ripgrep в Ubuntu используйте такую команду:</p>
+<pre tabindex="0"><code>sudo apt install ripgrep
+</code></pre><p>Если вы выполните команду, указав путь к файлу, то она найдёт и отобразит все вхождения искомого слова в этом файле. Например:</p>
+<pre tabindex="0"><code>sudo rg root /etc/passwd
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-5-894x576.png"></p>
+<p>Если же передать папку, то команда будет искать во всех файлах, которые находятся в этой папке. По умолчанию используется текущая папка. Например, для того чтобы найти все файлы, содержащие слово &ldquo;root&rdquo; в каталоге <strong>/etc/</strong> используйте такую команду:</p>
+<pre tabindex="0"><code>sudo rg root /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-6-894x576.png"></p>
+<p>Также, как и при использовании grep, можно отобразить не только строку со вхождением но и несколько строк до и после. Например, по две:</p>
+<pre tabindex="0"><code>sudo rg -C2 root /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-6-1-894x576.png"></p>
+<p>А вот полный синтаксис регулярных выражений здесь работает по умолчанию. Например:</p>
+<pre tabindex="0"><code>sudo rg &#34;^A[A-Z_]+=&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-7-894x576.png"></p>
+<p>Если же вы хотите указать что надо искать именно строку, а не регулярное выражение, используйте опцию <strong>-F</strong>:</p>
+<pre tabindex="0"><code>sudo rg -F &#34;[Install]&#34; /usr/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-8-894x576.png"></p>
+<h3 id="3-ack">3. Ack<a href="#3-ack" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Если вам нужно найти файл с исходным кодом зная строку, которая в нём есть, то для этого существуют более подходящие утилиты чем grep. Например, ack. Она появилась уже довольно давно и предназначена именно для работы с исходным кодом. Кроме всех возможностей grep она позволяет пропускать файлы резервных копий, внутренние файлы репозиториев <strong>.git</strong> и <strong>.svn</strong>, а также дампы памяти. Кроме того, вы можете выбрать типы файлов, в которых будет выполняться поиск и даже указать определённую часть файла. Для установки программы в Ubuntu используйте такую команду:</p>
+<pre tabindex="0"><code>sudo apt install ack
+</code></pre><p>Самый простой пример - поиск всех файлов содержащих слово <strong>root</strong> в папке <strong>/etc/</strong>:</p>
+<pre tabindex="0"><code>sudo ack &#34;root&#34; /etc/
+</code></pre><p>Или же регулярное выражение, как в предыдущем разделе для поиска файлов с переменными, начинающимися на букву A:</p>
+<pre tabindex="0"><code>sudo ack &#34;^A[A-Z_]+=&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-10-894x576.png"></p>
+<p>Для того чтобы вывести не только строку с вхождением, но и строки до и после неё используйте опцию -C. По умолчанию выводится по две строки:</p>
+<pre tabindex="0"><code>sudo ack -C &#34;root&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-11-894x576.png"></p>
+<p>Команда <strong>ack</strong> позволяет указать тип файлов, в которых надо выполнять поиск. Это очень удобно для поиска по исходникам. Вы можете выбрать только исходные файлы Си, JavaScript или PHP и так далее. Все доступные типы файлов можно посмотреть с помощью команды:</p>
+<pre tabindex="0"><code>ack --help-types
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-12-894x576.png"></p>
+<p>Например, для того чтобы выполнять поиск только в XML файлах используйте опцию <strong>&ndash;type</strong> со значением <strong>xml</strong>:</p>
+<pre tabindex="0"><code>sudo ack --type=xml &#34;root&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-13-894x576.png"></p>
+<p>Ещё одна интересная возможность утилиты <strong>ack</strong> - настройка частей файла, в которых будет выполняться поиск с помощью регулярного выражения. Для этого предназначены опции <strong>&ndash;range-start</strong> и <strong>&ndash;range-end</strong> и это будет работать как в рамках одной строки так и в рамках всего файла. Например, для поиска только в комментариях XML файлов можно использовать такую команду:</p>
+<pre tabindex="0"><code>sudo ack --type=xml --range-start=&#34;\&lt;\!\-\-&#34; --range-end=&#34;\-\-\&gt;&#34; &#34;root&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-14-894x576.png"></p>
+<h3 id="4-silver-searcher">4. Silver Searcher<a href="#4-silver-searcher" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>На данный момент это одна из самых популярных программ для поиска текста по файлам в Linux. Она была спроектирована в качестве альтернативы для ack, как инструмент для поиска кода. В дополнение к основным возможностям ack, она значительно быстрее и учитывает настройки исключений из файлов .gitignore и .hgignore. Для установки программы в Ubuntu используйте такую команду:</p>
+<pre tabindex="0"><code>sudo apt install silversearcher-ag
+</code></pre><p>Рассмотрим тот же пример, что и в предыдущих разделах. Для того чтобы найти все файлы содержащие слово <strong>root</strong> в папке <strong>/etc/</strong> выполните:</p>
+<pre tabindex="0"><code>sudo ag &#34;root&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-15-894x576.png"></p>
+<p>Аналогично <strong>grep</strong> и <strong>ripgrep</strong>, <strong>ag</strong> ожидает регулярное выражение в качестве паттерна поиска, поэтому вы можете использовать его без каких либо дополнительных опций. Например:</p>
+<pre tabindex="0"><code>sudo ag &#34;^A[A-Z_]+=&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-16-894x576.png"></p>
+<p>Но если вы хотите чтобы поисковый запрос рассматривался именно как строка, используйте опцию <strong>-Q</strong>. Например, для поиска всех файлов, содержащих секцию <strong>[Install]</strong> в папке **/usr/**выполните:</p>
+<pre tabindex="0"><code>sudo ag -Q &#34;[Install]&#34; /usr/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-17-894x576.png"></p>
+<p>Здесь тоже можно вывести несколько строк до и после строки со вхождением с помощью опции <strong>-С</strong>.</p>
+<p>В отличие от <strong>grep и ripgrep</strong>, команда <strong>ag</strong> позволяет указать тип файлов в которых вы хотите выполнять поиск. Посмотреть все доступные типы файлов можно с помощью такой команды:</p>
+<pre tabindex="0"><code>ag --list-file-types
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-19-894x576.png"></p>
+<p>Например, для того чтобы искать только по ini файлам используйте такую команду:</p>
+<pre tabindex="0"><code>sudo ag --ini &#34;root&#34; /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-20-894x576.png"></p>
+<p>Утилита также позволяет использовать регулярное выражение для фильтрации файлов по имени перед тем как выполнять поиск по содержимому. Для этого нужно использовать опцию <strong>-G</strong>. Например для того чтобы выполнять поиск только по файлам, имя которых заканчивается на conf, выполните:</p>
+<pre tabindex="0"><code>sudo ag -G .*\.conf$ root /etc/
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-21-894x576.png"></p>
+<h3 id="5-skim">5. Skim<a href="#5-skim" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Это ещё одна интересная утилита для нечеткого поиска в реальном времени, написанная на Rust. По умолчанию она ищет файлы по имени, но её можно использовать вместе с одной из выше перечисленных утилит для поиска файлов по содержимому в реальном времени. Пакета с программой пока нет в официальных репозиториях, но вы можете установить её с помощью cargo:</p>
+<pre tabindex="0"><code>cargo install skim
+</code></pre><p>Команда выполняет поиск только в текущей папке и указать другую папку нельзя, поэтому нужно сначала перейти в нужную папку используя команду <strong>cd</strong>. Например:</p>
+<pre tabindex="0"><code>cd /etc/
+</code></pre><p>Затем используйте такую команду для того чтобы объединить sk с Silver Searcher для фильтрации файлов по содержимому:</p>
+<pre tabindex="0"><code>sk --ansi -i -c &#39;ag --color &#34;{}&#34;&#39;
+</code></pre><p>Здесь опция <strong>&ndash;ansi</strong> включает отображение цветов, <strong>-i</strong> включает интерактивный режим, а опция <strong>-c</strong>задает команду, которая будет выполнена при вводе какого-либо запроса, строка <strong>{}</strong> будет заменена на то, что вы введете при поиске. Просто выполните команду и начинайте вводить слово которое хотите искать:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2023/03/search-files-by-content-22-894x576.png"></p>
+<p>Дальше вы можете использовать все функции фильтрации нечеткого поиска для обработки результатов.</p>
+<h2 id="производительность-grep-rg-ack-и-ag">Производительность grep, rg, ack и ag<a href="#производительность-grep-rg-ack-и-ag" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Перед завершением статьи хочу привести небольшой тест производительности выше перечисленных утилит для поиска текста по файлам в Linux. Я скачал и распаковал исходники ядра Linux версии 6.2.10, а затем использовал каждую из утилит для того чтобы найти все файлы, которые содержат слово ext4 и btrfs. Между разными утилитами система перезагружалась, для того чтобы исключить влияние кэша. Вот результаты:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>Команда</strong></th>
+          <th style="text-align: left"><strong>Время, с</strong></th>
+          <th style="text-align: left"><strong>Команда</strong></th>
+          <th style="text-align: left"><strong>Время</strong>, <strong>с</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>grep -r ext4 ./</strong></td>
+          <td style="text-align: left">23.167</td>
+          <td style="text-align: left"><strong>grep -r btrfs ./</strong></td>
+          <td style="text-align: left">3.860</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>rg ext4 ./</strong></td>
+          <td style="text-align: left">27.164</td>
+          <td style="text-align: left"><strong>rg btrfs ./</strong></td>
+          <td style="text-align: left">1.387</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>ack ext4 ./</strong></td>
+          <td style="text-align: left">36.141</td>
+          <td style="text-align: left"><strong>ack btrfs ./</strong></td>
+          <td style="text-align: left">7.206</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>ag ext4 ./</strong></td>
+          <td style="text-align: left">24.594</td>
+          <td style="text-align: left"><strong>ag btrfs ./</strong></td>
+          <td style="text-align: left">3.158</td>
+      </tr>
+  </tbody>
+</table>
+<p>Как видите, сразу после запуска системы все команды работают примерно одинаково. Однако после того, утилиты, написанные на Rust эффективнее используют кэш, поскольку при повторных запусках для того же набора файлов работают быстрее аналогов на Си.</p>
+<h2 id="выводы">Выводы<a href="#выводы" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>В этой статье были рассмотрены самые часто используемые утилиты для поиска файлов по содержимому и поиска текста в файлах в Linux. Как видите, существует достаточно инструментов чтобы было из чего выбрать. Все команды довольно похожие, но каждая из них имеет свои особенности.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Другие посты</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="/posts/installing_certificates_ubuntu/" class="button inline prev">
+        Установка сертификатов в Ubuntu
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="/posts/minecraftonlinux/" class="button inline next">
+        Как установить Minecraft на Linux
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Made with Love</span>
+    
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

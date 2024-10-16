@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Установка сертификатов в Ubuntu :: Terminal</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Сертификаты SSL используются для обеспечения безопасности в различных сферах. Самая распространенная - это просмотр веб-сайтов по протоколу HTTPS. Существует небольшое количество доверенных корневых сертификатов организаций, которые подписывают остальные сертификаты для всех сайтов. Эти доверенные сертификаты хранятся на каждом компьютере или смартфоне. И именно исходя из этого веб-браузер может понимать, что тому или иному сайту можно доверять.
+Но если вы попытаетесь создать свой корневой сертификат и подписать им сертификат для своего сайта, то увидите в браузере сообщение о том, что подключение не безопасно потому что используется сертификат, которого нет в списке доверенных. Аналогично будут работать и другие программы. Но вы можете добавить свой сертификат в список доверенных в своей системе. В этой статье мы рассмотрим как установить сертификат в Ubuntu.
+" />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="/posts/installing_certificates_ubuntu/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="/css/code.min.9db603e0d861c0df7a77b184868b72f50462a1d64eda830d14b527b8c22d1fac.css">
+
+  
+  <link rel="stylesheet" href="/css/fonts.min.90c955c31dd7c0e05aae3d4f583d4d8a2af799d69c961337eaf2a825063a55dd.css">
+
+  
+  <link rel="stylesheet" href="/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="/css/main.min.1d8be2dd1b5de9fdaed058c8c59fcf4485f36619574abfb47ed0cfda4812c16d.css">
+
+  
+  <link rel="stylesheet" href="/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="/css/terminal.min.07d06f9a9d3c0e8aeceef1aa0e16487bb4dc3d1fc254e66cff25df004ed46ccb.css">
+
+  
+  <link rel="stylesheet" href="/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Установка сертификатов в Ubuntu">
+<meta property="og:description" content="Сертификаты SSL используются для обеспечения безопасности в различных сферах. Самая распространенная - это просмотр веб-сайтов по протоколу HTTPS. Существует небольшое количество доверенных корневых сертификатов организаций, которые подписывают остальные сертификаты для всех сайтов. Эти доверенные сертификаты хранятся на каждом компьютере или смартфоне. И именно исходя из этого веб-браузер может понимать, что тому или иному сайту можно доверять.
+Но если вы попытаетесь создать свой корневой сертификат и подписать им сертификат для своего сайта, то увидите в браузере сообщение о том, что подключение не безопасно потому что используется сертификат, которого нет в списке доверенных. Аналогично будут работать и другие программы. Но вы можете добавить свой сертификат в список доверенных в своей системе. В этой статье мы рассмотрим как установить сертификат в Ubuntu.
+" />
+<meta property="og:url" content="/posts/installing_certificates_ubuntu/" />
+<meta property="og:site_name" content="Terminal" />
+
+  
+  
+  <meta property="og:image" content="/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-10-16 14:15:07 &#43;0300 MSK" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    ConFet.net
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/">Новости</a></li>
+        
+      
+        
+          <li><a href="/about">О нас</a></li>
+        
+      
+        
+          <li><a href="/articles">Статьи</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/" >Новости</a></li>
+        
+      
+        
+          <li><a href="/about" >О нас</a></li>
+        
+      
+      
+        <li>
+          <ul class="menu">
+            <li class="menu__trigger">Показать больше&nbsp;▾</li>
+            <li>
+              <ul class="menu__dropdown">
+                
+                  
+                    <li><a href="/articles" >Статьи</a></li>
+                  
+                
+              </ul>
+            </li>
+          </ul>
+        </li>
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/posts/installing_certificates_ubuntu/">Установка сертификатов в Ubuntu</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-10-16</time></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="/tags/"></a>&nbsp;
+      
+      #<a href="/tags/"></a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Сертификаты SSL используются для обеспечения безопасности в различных сферах. Самая распространенная - это просмотр веб-сайтов по протоколу HTTPS. Существует небольшое количество доверенных корневых сертификатов организаций, которые подписывают остальные сертификаты для всех сайтов. Эти доверенные сертификаты хранятся на каждом компьютере или смартфоне. И именно исходя из этого веб-браузер может понимать, что тому или иному сайту можно доверять.</p>
+<p>Но если вы попытаетесь создать свой корневой сертификат и подписать им сертификат для своего сайта, то увидите в браузере сообщение о том, что подключение не безопасно потому что используется сертификат, которого нет в списке доверенных. Аналогично будут работать и другие программы. Но вы можете добавить свой сертификат в список доверенных в своей системе. В этой статье мы рассмотрим как установить сертификат в Ubuntu.</p>
+<p>Содержание статьи</p>
+<ul>
+<li><a href="https://losst.pro/ustanovka-sertifikatov-v-ubuntu#chto-nam-ponadobitsya">Что нам понадобится?</a></li>
+<li>Установка сертификатов в Ubuntu
+<ul>
+<li><a href="https://losst.pro/ustanovka-sertifikatov-v-ubuntu#toc-1-ustanovka-v-sisteme">1. Установка в системе</a></li>
+<li><a href="https://losst.pro/ustanovka-sertifikatov-v-ubuntu#toc-2-ustanovka-v-google-chrome">2. Установка в Google Chrome</a></li>
+<li><a href="https://losst.pro/ustanovka-sertifikatov-v-ubuntu#toc-3-ustanovka-v-firefox">3. Установка в Firefox</a></li>
+</ul>
+</li>
+<li><a href="https://losst.pro/ustanovka-sertifikatov-v-ubuntu#vyvody">Выводы</a></li>
+</ul>
+<h2 id="что-нам-понадобится">Что нам понадобится?<a href="#что-нам-понадобится" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Я хочу показать на примере как сделать сертификат доверенным в Ubuntu. Для этого можно создать свой центр сертификации CA с помощью EasyRSA, создать и подписать SSL сертификат, как это описано в статье про <a href="https://losst.pro/sozdanie-sertifikata-openssl">создание сертификатов OpenSSL</a>. Далее использовать этот сертификат для домена localhost в Apache. Таким образом у вас получится три файла:</p>
+<ul>
+<li><strong>ca.crt</strong> - корневой сертификат центра сертификации;</li>
+<li><strong>localhost.crt</strong> - сертификат сайта подписанный центром сертификации;</li>
+<li><strong>localhost.key</strong> - ключ сертификата сайта.</li>
+</ul>
+<p>Активируйте файл виртуального хоста Apache для сайта по умолчанию с помощью такой команды:</p>
+<pre tabindex="0"><code>sudo a2ensite default-ssl
+</code></pre><p>Далее откройте этот файл и найдите такие строки:</p>
+<pre tabindex="0"><code>SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pemSSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+</code></pre><p>Для параметра <strong>SSLCertificateFile</strong> надо передать путь к сертификату сайта, например, <strong>localhost.crt</strong>, а для <strong>SSLCertificateKeyFile</strong> - ключу сертификата сайта. Например, <strong>localhost.key</strong>. Если сертификаты находятся в папке /etc/apache/ssl, то конфигуация будет выглядеть вот так:</p>
+<pre tabindex="0"><code>SSLCertificateFile /etc/apache/ssl/localhost.crtSSLCertificateKeyFile /etc/apache/ssl/localhost.key
+</code></pre><p>После этого нужно перезапустить Apache:</p>
+<pre tabindex="0"><code>sudo systemctl restart apache2
+</code></pre><p>Теперь у вас всё готово для того чтобы выполнить всё описанное ниже в своей системе.</p>
+<h2 id="установка-сертификатов-в-ubuntu">Установка сертификатов в Ubuntu<a href="#установка-сертификатов-в-ubuntu" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="1-установка-в-системе">1. Установка в системе<a href="#1-установка-в-системе" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Если вы попытаетесь использовать подписанные вами сертификаты для включения поддержки HTTPS на веб-сервере, а потом откроете такой веб-сайт с помощью браузера или сделаете к нему запрос в командной строке, то получите ошибку SSL, в которой будет сказано, что этот сертификат не является доверенным и подключение к этому сайту может быть не безопасно.</p>
+<pre tabindex="0"><code>curl -I https://localhost
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-1010x576.png"></p>
+<p>Для того чтобы сертификат считался доверенным в системе нужно добавить корневой сертификат центра сертификации, с помощью которого он был подписан в список доверенных. Если это самоподписанный сертификат, то в список доверенных можно добавлять его самого.</p>
+<p>И так, у вас есть сертификат <strong>ca.crt</strong>. Для того чтобы система считала его доверенным, нужно скопировать его в папку <strong>/usr/local/share/ca-certificates</strong>:</p>
+<pre tabindex="0"><code>cp ./ca.crt /usr/local/share/ca-certificates/losstca.crt
+</code></pre><p>После этого необходимо выполнить такую команду:</p>
+<pre tabindex="0"><code>sudo update-ca-certificates
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-2-1010x576.png"></p>
+<p>После этого можно проверить что система воспринимает сертификат как доверенный выполнив команду curl:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-3-1010x576.png"></p>
+<p>Но этот способ будет работать только для тех программ, которые используют системное хранилище доверенных сертификатов. Веб-браузеры, такие как Firefox и Google Chrome имеют собственные хранилища сертификатов и не используют хранилище системы, поэтому в каждом браузере нужно импортировать сертификаты отдельно. Иначе вы будете получать такую ошибку:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-16-1010x576.png"></p>
+<p>Chrome, Firefox, Thunderbird используют nssdb для работы с сертификатами. Это значит что вы можете импортировать сертификаты как в графическом интерфейсе браузера, так и в терминале, с помощью утилиты certutil. Давайте рассмотрим как это сделать. Давайте рассмотрим как выполняется установка сертификата в Ubuntu.</p>
+<h3 id="2-установка-в-google-chrome">2. Установка в Google Chrome<a href="#2-установка-в-google-chrome" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Для того чтобы добавить сертификат в Google Chrome или Chromium в графическом интерфейсе откройте настройки из главного меню:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-4-1010x576.png"></p>
+<p>Перейдите в <strong>Конфиденциальность и безопасность</strong> -&gt; <strong>Безопасность</strong> -&gt; <strong>Настроить сертификаты</strong>:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-5-1010x576.png"></p>
+<p>В открывшемся окне перейдите на вкладку <strong>Центры сертификации</strong>:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-6-1010x576.png"></p>
+<p>Здесь необходимо нажать кнопку <strong>Импорт</strong> и выбрать файл корневого сертификата:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-7-1010x576.png"></p>
+<p>Далее надо настроить параметры доверия. Поскольку сейчас сертификат будет использоваться для подтверждения подлинности сайтов, то можно оставить только первый пункт:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-8-1010x576.png"></p>
+<p>После этого сертификат будет добавлен и вы больше не будете видеть информацию о том, что подключение не безопасное.</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-18-1010x576.png"></p>
+<p>В командной строке всё тоже довольно просто. Для работы с сертификатами вам понадобится пакет <strong>libnss3-tools</strong>, установите его с помощью команды:</p>
+<pre tabindex="0"><code>sudo apt install libnss3-tools
+</code></pre><p>База данных сертификатов Google Chrome находится в папке <strong>~/.pki/nssdb</strong>. Вы можете посмотреть доступные сертификаты командой:</p>
+<pre tabindex="0"><code>certutil -d ~/.pki/nssdb -L
+</code></pre><p>Синтаксис команды для добавления сертификата следующий:</p>
+<p><strong>$ certutil -d путь/к/базе/данных -A -t &ldquo;настройки_доверия&rdquo; -n &ldquo;имя&rdquo; -i &ldquo;/путь/к/файлу&rdquo;</strong></p>
+<p>Обратите внимание на настройки доверия. Существует три группы атрибутов доверия:</p>
+<ul>
+<li>Для SSL;</li>
+<li>Для Email;</li>
+<li>Для программного обеспечения и других объектов.</li>
+</ul>
+<p>Каждая из групп может содержать такие атрибуты:</p>
+<ul>
+<li><strong>p</strong> - валидный пир;</li>
+<li><strong>P</strong> - доверенный пир;</li>
+<li><strong>c</strong> - валидный центр сертификации;</li>
+<li><strong>C</strong> - доверенный центр сертификации;</li>
+<li><strong>T</strong> - доверенный центр сертификации для авторизации клиентов.</li>
+</ul>
+<p>Для SSL сертификатов можно достаточно такой последовательности &ldquo;TC,,&rdquo;. То есть атрибуты T и C для SSL и ничего для всего остального. Вся команда для импорта ca.crt будет выглядеть вот так:</p>
+<pre tabindex="0"><code>certutil -d sql:~/.pki/nssdb -A -t &#34;TC,,&#34; -n &#34;Losst CA&#34; -i ./ca.crt
+</code></pre><p>После этого вы снова можете посмотреть список сертификатов для того чтобы убедится что всё хорошо:</p>
+<pre tabindex="0"><code>certutil -d sql:~/.pki/nssdb -L
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-17-1010x576.png"></p>
+<p>Сертификат есть и после этого браузер будет считать его доверенным. Сертификаты добавленные в графическом интерфейсе тоже добавляются сюда. Теперь вы знаете как выполняется установка корневых сертификатов Ubuntu.</p>
+<h3 id="3-установка-в-firefox">3. Установка в Firefox<a href="#3-установка-в-firefox" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>В Firefox всё немного сложнее. Тут нет централизованного хранилища сертификатов, а поэтому их придется добавлять для каждого профиля отдельно, что в графическом интерфейсе, что в командной строке. Для того чтобы добавить сертификат в графическом интерфейсе откройте<strong>Настройки</strong> в главном меню:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-9-1010x576.png"></p>
+<p>Далее перейдите в раздел <strong>Защита и безопасность</strong> и найдите там пункт <strong>Сертификаты</strong>. Здесь надо нажать кнопку <strong>Посмотреть сертификаты</strong>:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-10-1010x576.png"></p>
+<p>В открывшемся окне перейдите на вкладку <strong>Центры сертификации</strong> и нажмите кнопку <strong>Импортировать</strong>, для того чтобы добавить свой сертификат. Далее выберите файл сертификата и установить настройки доверия. Нужно отметить как минимум первую галочку - <strong>Доверять при идентификации веб-сайтов</strong>:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-11-1010x576.png"></p>
+<p>На этом установка SSL сертификата в Firefox завершена. Если вы хотите добавить сертификат в командной строке, то необходимо добавить его во все профили. Профили находятся в папке**~/.mozilla/firefox/.** В данном примере, есть два профиля и только один из них заполнен:</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-12-1010x576.png"></p>
+<p>Файлы nssdb находятся прямо в папке профиля, поэтому можно просто передать эту папку в certutil. Например, для просмотра списка сертификатов выполните:</p>
+<pre tabindex="0"><code>certutil -d ~/.mozilla/firefox/k9z8sttc.default-release/ -L
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-13-1010x576.png"></p>
+<p>Для добавления сертификата используйте такую команду подставив свой путь к папке профиля:</p>
+<pre tabindex="0"><code>certutil -d ~/.mozilla/firefox/k9z8sttc.default-release/ -A -t &#34;TC,,&#34; -n &#34;Losst&#34; -i ./ca.crt
+</code></pre><p>После этого полученный сертификат появится в списке.</p>
+<p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-14-1010x576.png"></p>
+<p>Обратите внимание, что такой способ работает для Firefox, установленного как .deb пакет. Если у вас Firefox, установленный с помощью пакетного менеджера snap, то этот метод может не работать.</p>
+<p>Для Firefox есть ещё один способ добавить сертификаты из системы автоматически без использования certutil. Это загрузка сертификатов с помощью политики. Возможно вы слышали про опцию <strong>security.enterprise_roots.enabled</strong> в <strong>about:config</strong>. Она работает только в Windows и MacOS но не в Linux. Однако, можно создать файл политики папке <strong>/usr/lib/firefox/distribution/</strong> и там прописать какие сертификаты следует загрузить. По умолчанию Firefox будет искать сертификаты таких каталогах:</p>
+<ul>
+<li>/usr/lib/mozilla/certificates</li>
+<li>/usr/lib64/mozilla/certificates</li>
+<li>~/.mozilla/certificates</li>
+</ul>
+<p>В самом файле надо указать имена файлов сертификатов если они находятся в одной из этих папок или полный путь к ним. Например, скопируйте сертификат CA в папку**/usr/lib/mozilla/certificates**:</p>
+<pre tabindex="0"><code>cp ~/easy-rsa-ca/ca.crt /usr/lib/mozilla/certificates/losst.crt
+</code></pre><p>Поддерживаются как ASCII сертификаты (CRT/PEM), так и двоичные (DER). Затем создайте файл политики со следующем содержимым:</p>
+<pre tabindex="0"><code>sudo vi /usr/lib/firefox/distribution/policies.json
+{
+    &#34;policies&#34;: {
+        &#34;ImportEnterpriseRoots&#34;: true,
+        &#34;Certificates&#34;: {
+            &#34;Install&#34;: [
+                &#34;losst.crt&#34;,
+            ]
+       }
+    }
+}
+</code></pre><p><img alt="img" src="https://losst.pro/wp-content/uploads/2022/10/ubuntu-certs-15-1010x576.png"></p>
+<p>Перезапустите браузер и после этого Firefox должен начать видеть ваш сертификат.</p>
+<h2 id="выводы">Выводы<a href="#выводы" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>В этой статье мы рассмотрели как установить сертификаты в Ubuntu, а также как добавить их в самые популярные браузеры. Как видите, универсального решения, не существует, но всё можно настроить.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Другие посты</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="/posts/42_must_have_commands_linux/" class="button inline prev">
+        42 команды Linux которые вы должны знать
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="/posts/searching_files_by_contentin_linux/" class="button inline next">
+        Поиск файлов по содержимому в Linux
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Made with Love</span>
+    
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

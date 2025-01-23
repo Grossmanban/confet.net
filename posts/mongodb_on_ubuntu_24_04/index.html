@@ -285,11 +285,12 @@
 </span></span></code></pre></div><ol start="2">
 <li>Пример создания обычного пользователя:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">createUser</span>({
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">use</span> <span style="color:#a6e22e">MY_DB1</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">createUser</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;user&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">pwd</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ВАШ_НАДЕЖНЫЙ_ПАРОЛЬ&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">roles</span><span style="color:#f92672">:</span> [
-</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;readWrite&#34;</span>, <span style="color:#a6e22e">db</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vpn&#34;</span> }
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;readWrite&#34;</span>, <span style="color:#a6e22e">db</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;MY_DB1&#34;</span> }
 </span></span><span style="display:flex;"><span>  ]
 </span></span><span style="display:flex;"><span>})
 </span></span></code></pre></div><ol start="3">
@@ -299,6 +300,11 @@
 </span></span><span style="display:flex;"><span>  { <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;readWrite&#34;</span>, <span style="color:#a6e22e">db</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;db1&#34;</span> },
 </span></span><span style="display:flex;"><span>  { <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;dbOwner&#34;</span>, <span style="color:#a6e22e">db</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;db2&#34;</span> }
 </span></span><span style="display:flex;"><span>])
+</span></span></code></pre></div><ol start="4">
+<li>Узнать информацию обо всех пользователях</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">use</span> <span style="color:#a6e22e">admin</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">system</span>.<span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">find</span>().<span style="color:#a6e22e">pretty</span>()
 </span></span></code></pre></div><h2 id="подключение-к-mongodb">Подключение к MongoDB<a href="#подключение-к-mongodb" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <ol>
 <li>Подключение с аутентификацией:</li>

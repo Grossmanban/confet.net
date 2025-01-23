@@ -3,15 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/</loc>
-    <lastmod>2025-01-20T21:11:05+03:00</lastmod>
+    <lastmod>2025-01-23T16:09:30+03:00</lastmod>
+  </url><url>
+    <loc>/posts/</loc>
+    <lastmod>2025-01-23T16:09:30+03:00</lastmod>
+  </url><url>
+    <loc>/posts/3x-ui/</loc>
+    <lastmod>2025-01-23T16:09:30+03:00</lastmod>
   </url><url>
     <loc>/tags/db/</loc>
     <lastmod>2025-01-20T21:11:05+03:00</lastmod>
   </url><url>
     <loc>/tags/mongodb/</loc>
-    <lastmod>2025-01-20T21:11:05+03:00</lastmod>
-  </url><url>
-    <loc>/posts/</loc>
     <lastmod>2025-01-20T21:11:05+03:00</lastmod>
   </url><url>
     <loc>/tags/</loc>

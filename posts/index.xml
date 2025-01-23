@@ -6,7 +6,54 @@
     <description>Recent content in Posts on ConFet.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Jan 2025 21:11:05 +0300</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Jan 2025 16:09:30 +0300</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Установка 3x-ui</title>
+      <link>/posts/3x-ui/</link>
+      <pubDate>Thu, 23 Jan 2025 16:09:30 +0300</pubDate>
+      
+      <guid>/posts/3x-ui/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;Воспользуемся скриптом разработчика с Github для установки&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;bash&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;curl&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Ls&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;https&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Настроим SSL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;apt&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;get&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;install&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;certbot&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;y&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;certbot&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;certonly&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;standalone&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;agree&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;tos&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;register&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;unsafely&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;without&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;email&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;d&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;yourdomainDOTcom&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;certbot&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;renew&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;dry&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Выбираем эти настройки для vless&lt;/p&gt;
+&lt;p&gt;Dest (Target)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;google&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;443&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;SNI&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;google&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;www&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;google&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;</description>
+      <content>&lt;ol&gt;
+&lt;li&gt;Воспользуемся скриптом разработчика с Github для установки&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;bash&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;curl&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Ls&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;https&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Настроим SSL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;apt&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;get&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;install&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;certbot&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;y&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;certbot&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;certonly&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;standalone&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;agree&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;tos&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;register&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;unsafely&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;without&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;email&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;d&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;yourdomainDOTcom&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;certbot&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;renew&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;dry&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Выбираем эти настройки для vless&lt;/p&gt;
+&lt;p&gt;Dest (Target)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;google&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;443&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;SNI&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;google&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;www&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;google&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;com&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    </item>
+    
     <item>
       <title>Установка и настройка MongoDB на Ubuntu 24.04</title>
       <link>/posts/mongodb_on_ubuntu_24_04/</link>
